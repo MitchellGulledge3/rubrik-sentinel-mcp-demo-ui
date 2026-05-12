@@ -1,0 +1,16 @@
+RubrikProtectionStatusDemo_CL
+| where TimeGenerated >= ago(7d)
+| where ProtectionStatus == "Unprotected"
+    or AwaitingFirstFull == true
+    or tolong(TotalSnapshots) == 0
+| summarize
+    UnprotectedAssets=count(),
+    AwaitingFirstFullCount=countif(AwaitingFirstFull == true),
+    NoSnapshotsCount=countif(tolong(TotalSnapshots) == 0),
+    ProvisionedBytes=sum(tolong(ProvisionedBytes)),
+    UsedBytes=sum(tolong(UsedBytes)),
+    Examples=make_set(AssetName, 10),
+    Locations=make_set(Location, 10)
+    by ObjectType, ClusterName, OrgName
+| order by UnprotectedAssets desc
+| take 20

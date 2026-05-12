@@ -1,0 +1,19 @@
+RubrikProtectionStatusDemo_CL
+| where TimeGenerated >= ago(7d)
+| where ComplianceStatus == "OutOfCompliance"
+    or ArchivalComplianceStatus == "OutOfCompliance"
+    or ReplicationComplianceStatus == "OutOfCompliance"
+| summarize
+    OutOfComplianceAssets=count(),
+    ArchivalGap=countif(ArchivalComplianceStatus == "OutOfCompliance"),
+    ReplicationGap=countif(ReplicationComplianceStatus == "OutOfCompliance"),
+    SnapshotGap=countif(ComplianceStatus == "OutOfCompliance"),
+    MissedSnapshots=sum(tolong(MissedSnapshots)),
+    OldestLastSnapshot=min(todatetime(LastSnapshot)),
+    NewestLastSnapshot=max(todatetime(LastSnapshot)),
+    AvgArchivalLagDays=avg(toint(ArchivalSnapshotLag)),
+    AvgReplicationLagDays=avg(toint(ReplicationSnapshotLag)),
+    Examples=make_set(AssetName, 10)
+    by ClusterName, SlaDomainName, ObjectType
+| order by OutOfComplianceAssets desc
+| take 20

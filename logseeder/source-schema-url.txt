@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/RubrikSecurityCloud/Data%20Connectors/RubrikSecurityCloud_CCF/RubrikSecurityCloud_Table.json

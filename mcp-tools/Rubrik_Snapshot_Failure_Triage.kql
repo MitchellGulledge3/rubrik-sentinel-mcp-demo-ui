@@ -1,0 +1,14 @@
+RubrikProtectionStatusDemo_CL
+| where TimeGenerated >= ago(7d)
+| where tolong(MissedSnapshots) > 0
+| summarize
+    AssetsWithMisses=dcount(AssetId),
+    TotalMisses=sum(tolong(MissedSnapshots)),
+    MaxMissesOnOneAsset=max(tolong(MissedSnapshots)),
+    AvgArchivalLagDays=avg(toint(ArchivalSnapshotLag)),
+    AvgReplicationLagDays=avg(toint(ReplicationSnapshotLag)),
+    OldestSnapshot=min(todatetime(LastSnapshot)),
+    TopOffenders=make_set(AssetName, 10)
+    by ClusterName, SlaDomainName, ObjectType
+| order by TotalMisses desc
+| take 20

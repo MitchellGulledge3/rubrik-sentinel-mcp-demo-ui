@@ -1,0 +1,21 @@
+RubrikProtectionStatusDemo_CL
+| where TimeGenerated >= ago(7d)
+| summarize
+    Assets=count(),
+    Protected=countif(ProtectionStatus == "Protected"),
+    Unprotected=countif(ProtectionStatus == "Unprotected"),
+    AwaitingFirstFull=countif(AwaitingFirstFull == true),
+    InCompliance=countif(ComplianceStatus == "InCompliance"),
+    OutOfCompliance=countif(ComplianceStatus == "OutOfCompliance"),
+    ArchivalOutOfCompliance=countif(ArchivalComplianceStatus == "OutOfCompliance"),
+    ReplicationOutOfCompliance=countif(ReplicationComplianceStatus == "OutOfCompliance"),
+    TotalSnapshots=sum(tolong(TotalSnapshots)),
+    TotalMissedSnapshots=sum(tolong(MissedSnapshots)),
+    UniqueClusters=dcount(ClusterName),
+    UniqueSlaDomains=dcount(SlaDomainName),
+    LocalStorageBytes=sum(tolong(LocalStorage)),
+    ArchiveStorageBytes=sum(tolong(ArchiveStorage)),
+    AvgDataReduction=avg(toreal(DataReduction)),
+    ObjectTypes=make_set(ObjectType, 15),
+    Clusters=make_set(ClusterName, 15)
+| project Assets, Protected, Unprotected, AwaitingFirstFull, InCompliance, OutOfCompliance, ArchivalOutOfCompliance, ReplicationOutOfCompliance, TotalSnapshots, TotalMissedSnapshots, UniqueClusters, UniqueSlaDomains, LocalStorageBytes, ArchiveStorageBytes, AvgDataReduction, ObjectTypes, Clusters

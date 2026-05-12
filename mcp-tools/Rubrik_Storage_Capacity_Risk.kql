@@ -1,0 +1,18 @@
+RubrikProtectionStatusDemo_CL
+| where TimeGenerated >= ago(7d)
+| summarize
+    Assets=count(),
+    LocalStorageBytes=sum(tolong(LocalStorage)),
+    ArchiveStorageBytes=sum(tolong(ArchiveStorage)),
+    ReplicaStorageBytes=sum(tolong(ReplicaStorage)),
+    LogicalBytes=sum(tolong(LogicalBytes)),
+    PhysicalBytes=sum(tolong(PhysicalBytes)),
+    UsedBytes=sum(tolong(UsedBytes)),
+    AvgDataReduction=avg(toreal(DataReduction)),
+    AvgLogicalDataReduction=avg(toreal(LogicalDataReduction)),
+    PoorReductionAssets=countif(toreal(DataReduction) < 1.5)
+    by ClusterName
+| extend StorageGB = round(toreal(LocalStorageBytes) / 1073741824.0, 2)
+| order by LocalStorageBytes desc
+| project ClusterName, Assets, StorageGB, LogicalBytes, PhysicalBytes, UsedBytes, AvgDataReduction, AvgLogicalDataReduction, PoorReductionAssets, ArchiveStorageBytes, ReplicaStorageBytes
+| take 15
