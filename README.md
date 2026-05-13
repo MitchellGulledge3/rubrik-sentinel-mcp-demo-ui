@@ -84,24 +84,47 @@ The MCP tools expose that investigation as reusable capabilities:
 
 ## Prerequisites
 
-1. **Azure CLI** authenticated to the Sentinel workspace subscription (for LogSeeder).
-2. **A Log Analytics workspace** with Microsoft Sentinel enabled.
-3. **Microsoft Sentinel data lake enabled** and a **Microsoft Defender** license (for the Save-as-tool flow).
-4. **PowerShell 7** for LogSeeder.
-5. **Python 3.9+** for the terminal demo.
-6. **Defender portal role**: Security Operator, Security Admin, or Global Admin to create custom MCP tools.
+You'll need:
 
-For the existing demo workspace, the configured workspace customer ID is:
+1. **An Azure subscription** with a **Log Analytics workspace** that has **Microsoft Sentinel data lake** enabled and a **Microsoft Defender** license attached.
+2. **Defender portal roles** (on the workspace) to *create* custom tools via the Save-as-tool UI: **Security Operator**, **Security Admin**, or **Global Admin**. To *invoke* the tools later: **Security Reader** or **Global Reader**.
+3. **Azure CLI** (`az`) authenticated against the subscription (used by LogSeeder):
+   ```bash
+   brew install azure-cli         # if you don't already have it
+   az login
+   az account set --subscription "<subscription-id-or-name>"
+   ```
+4. **PowerShell 7** (used by LogSeeder for data seeding):
+   ```bash
+   brew install --cask powershell
+   pwsh --version                  # should report 7.x
+   ```
+5. **Python 3.9+** for the terminal demo (`python3 --version`).
+6. **`sentinel-logseeder`** — Microsoft's sample-data tool. Clone it once anywhere on disk:
+   ```bash
+   git clone https://github.com/microsoft/sentinel-logseeder.git
+   ```
 
-```text
-77429a58-865a-4764-8429-aaacdfe3cb73
+### Get your workspace customer ID
+
+Several steps below ask for `<workspace-customer-id>`. That's the Log Analytics **workspace ID** (a GUID), **not** the Azure resource ID. Find yours with:
+
+```bash
+az monitor log-analytics workspace show \
+  --resource-group <rg> \
+  --workspace-name <workspace> \
+  --query customerId -o tsv
 ```
 
 ## Seed data with LogSeeder
 
 ```bash
-cp /path/to/rubrik-sentinel-mcp-demo-ui/logseeder/RubrikProtectionStatusDemo_CL.json ./schemas/
-cd /path/to/sentinel-logseeder
+# Adjust to your paths
+export REPO_ROOT=$(pwd)                       # this repo
+export LOGSEEDER=/path/to/sentinel-logseeder  # where you cloned LogSeeder
+
+cp "$REPO_ROOT/logseeder/RubrikProtectionStatusDemo_CL.json" "$LOGSEEDER/schemas/"
+cd "$LOGSEEDER"
 pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass \
   -File ./scripts/Invoke-SampleDataIngestion.ps1 \
   -TableName RubrikProtectionStatusDemo_CL \
@@ -163,7 +186,7 @@ Reference: [Create and use custom Microsoft Sentinel MCP tools (preview)](https:
 ## Terminal demo
 
 ```bash
-cd /path/to/rubrik-sentinel-mcp-demo-ui
+cd "$REPO_ROOT"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -173,7 +196,7 @@ cp .env.example .env
 Edit `.env`:
 
 ```text
-MCP_DEFAULT_ARGUMENTS={"workspaceId":"<log-analytics-workspace-customer-id>"}
+MCP_DEFAULT_ARGUMENTS={"workspaceId":"<workspace-customer-id>"}
 ```
 
 Run:

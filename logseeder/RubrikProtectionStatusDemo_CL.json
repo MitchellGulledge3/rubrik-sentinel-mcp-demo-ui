@@ -1,182 +1,674 @@
 {
   "columns": [
-    { "name": "TimeGenerated", "type": "datetime" },
-    { "name": "AssetId", "type": "string", "values": [
-      "asset-vm-prd-sql-001", "asset-vm-prd-sql-002", "asset-vm-prd-ad-003",
-      "asset-vm-prd-app-010", "asset-vm-prd-app-011", "asset-vm-prd-web-020",
-      "asset-vm-dev-app-100", "asset-vm-dev-app-101", "asset-vm-test-200",
-      "asset-vmware-vc-300", "asset-vmware-vc-301", "asset-mssql-db-400",
-      "asset-mssql-db-401", "asset-oracle-db-410", "asset-nas-share-500",
-      "asset-nas-share-501", "asset-fileset-501", "asset-fileset-502",
-      "asset-m365-mbx-600", "asset-m365-od-601", "asset-m365-sp-602",
-      "asset-k8s-pvc-700", "asset-k8s-pvc-701", "asset-aws-ec2-800",
-      "asset-aws-rds-801", "asset-azure-vm-900", "asset-azure-disk-901"
-    ]},
-    { "name": "AssetName", "type": "string", "values": [
-      "prd-sql-cluster-01", "prd-sql-cluster-02", "prd-ad-dc-03",
-      "prd-app-server-10", "prd-app-server-11", "prd-web-server-20",
-      "dev-app-server-100", "dev-app-server-101", "test-server-200",
-      "vcenter-east-01", "vcenter-east-02", "FinanceDB", "HRDB",
-      "OracleERP", "//fileserver/finance-share", "//fileserver/hr-share",
-      "fileset-legal-archive", "fileset-engineering-source",
-      "ceo@contoso.com", "alice@contoso.com/onedrive",
-      "sites/finance/sharepoint", "pvc-prod-checkout-01",
-      "pvc-prod-checkout-02", "i-0abc1234ec2instance", "rds-finance-prod",
-      "vm-azure-finance-09", "azuredisk-finance-09"
-    ]},
-    { "name": "ObjectType", "type": "string", "values": [
-      "VmwareVirtualMachine", "WindowsVolumeGroup", "MssqlDatabase",
-      "OracleDatabase", "NasFileset", "WindowsFileset", "LinuxFileset",
-      "ManagedVolume", "K8sPersistentVolumeClaim", "Ec2Instance",
-      "RdsInstance", "AzureVirtualMachine", "AzureNativeManagedDisk",
-      "O365Mailbox", "O365Onedrive", "O365Sharepoint", "O365Teams"
-    ]},
-    { "name": "ObjectState", "type": "string", "values": [
-      "Active", "Active", "Active", "Active", "Active", "Active",
-      "Replicated", "DoNotProtect", "Relic"
-    ]},
-    { "name": "ProtectionStatus", "type": "string", "values": [
-      "Protected", "Protected", "Protected", "Protected", "Protected",
-      "Protected", "Protected", "Unprotected", "Unprotected",
-      "DoNotProtect", "AwaitingFirstFull"
-    ]},
-    { "name": "ComplianceStatus", "type": "string", "values": [
-      "InCompliance", "InCompliance", "InCompliance", "InCompliance",
-      "InCompliance", "InCompliance", "InCompliance",
-      "OutOfCompliance", "OutOfCompliance", "OutOfCompliance",
-      "NotAvailable"
-    ]},
-    { "name": "ArchivalComplianceStatus", "type": "string", "values": [
-      "InCompliance", "InCompliance", "InCompliance", "InCompliance",
-      "InCompliance", "InCompliance",
-      "OutOfCompliance", "OutOfCompliance", "NotAvailable"
-    ]},
-    { "name": "ReplicationComplianceStatus", "type": "string", "values": [
-      "InCompliance", "InCompliance", "InCompliance", "InCompliance",
-      "InCompliance",
-      "OutOfCompliance", "OutOfCompliance", "OutOfCompliance",
-      "NotAvailable"
-    ]},
-    { "name": "LastSnapshot", "type": "datetime" },
-    { "name": "LatestArchivalSnapshot", "type": "datetime" },
-    { "name": "LatestReplicationSnapshot", "type": "datetime" },
-    { "name": "ProtectedOn", "type": "datetime" },
-    { "name": "PullTime", "type": "datetime" },
-    { "name": "Location", "type": "string", "values": [
-      "us-east-1", "us-west-2", "westeurope", "northeurope",
-      "eastus", "westus2", "DC1-Boston", "DC2-Phoenix", "DC3-London"
-    ]},
-    { "name": "ClusterName", "type": "string", "values": [
-      "rubrik-prd-east-01", "rubrik-prd-east-01", "rubrik-prd-east-01",
-      "rubrik-prd-west-01", "rubrik-prd-west-01",
-      "rubrik-edge-boston-01", "rubrik-edge-phoenix-01",
-      "rubrik-rsc-cloud-01"
-    ]},
-    { "name": "SlaDomainName", "type": "string", "values": [
-      "Gold-Tier1-Production", "Silver-Tier2-Production",
-      "Bronze-Tier3-Dev", "Mission-Critical-24h",
-      "Standard-Daily-30d", "Standard-Daily-30d", "Standard-Daily-30d",
-      "Archive-Long-Term-7yr", "PCI-Compliance-7yr",
-      "HIPAA-Compliance-7yr", "GDPR-Compliance-30d",
-      "DoNotProtect", "UNPROTECTED"
-    ]},
-    { "name": "WorkloadOrgName", "type": "string", "values": [
-      "Contoso", "Contoso-Finance", "Contoso-HR", "Contoso-Engineering",
-      "Contoso-Legal", "Contoso-Sales"
-    ]},
-    { "name": "OrgName", "type": "string", "values": [
-      "Contoso", "Contoso-Finance", "Contoso-HR", "Contoso-Engineering",
-      "Contoso-Legal", "Contoso-Sales"
-    ]},
-    { "name": "Fid", "type": "string", "values": [
-      "fid-3f8a-9d12-7abc-0001", "fid-3f8a-9d12-7abc-0002",
-      "fid-7c91-2ef4-44bd-0010", "fid-9b22-4d77-1c0a-0050",
-      "fid-2104-aa55-66de-0100", "fid-5512-bbcc-7733-0200"
-    ]},
-    { "name": "OrgId", "type": "string", "values": [
-      "Org:01HABCDEF1234567890",
-      "Org:01HABCDEF1234567891",
-      "Org:01HABCDEF1234567892"
-    ]},
-    { "name": "AwaitingFirstFull", "type": "bool", "values": [
-      false, false, false, false, false, false, false, false, true, true
-    ]},
-    { "name": "ArchivalSnapshotLag", "type": "int", "values": [
-      0, 0, 0, 0, 1, 1, 2, 3, 5, 7, 14, 30, 60
-    ]},
-    { "name": "ReplicationSnapshotLag", "type": "int", "values": [
-      0, 0, 0, 0, 0, 1, 2, 3, 5, 7, 14, 30
-    ]},
-    { "name": "MissedSnapshots", "type": "int", "values": [
-      0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 5, 8, 12, 20
-    ]},
-    { "name": "TotalSnapshots", "type": "int", "values": [
-      0, 14, 30, 45, 60, 90, 120, 180, 240, 365, 500, 730
-    ]},
-    { "name": "LocalSnapshots", "type": "int", "values": [
-      0, 7, 14, 30, 45, 60, 90, 120, 180 ]},
-    { "name": "LocalSlaSnapshots", "type": "int", "values": [
-      0, 7, 14, 30, 45, 60, 90, 120, 180 ]},
-    { "name": "LocalOnDemandSnapshots", "type": "int", "values": [
-      0, 0, 0, 1, 1, 2, 3 ]},
-    { "name": "ArchiveSnapshots", "type": "int", "values": [
-      0, 7, 14, 30, 60, 90, 365 ]},
-    { "name": "ReplicaSnapshots", "type": "int", "values": [
-      0, 0, 7, 14, 30, 60, 90 ]},
-    { "name": "LocalStorage", "type": "long", "values": [
-      1073741824, 5368709120, 10737418240, 53687091200, 107374182400,
-      536870912000, 1099511627776, 5497558138880
-    ]},
-    { "name": "ArchiveStorage", "type": "long", "values": [
-      0, 536870912, 5368709120, 53687091200, 107374182400, 536870912000
-    ]},
-    { "name": "ReplicaStorage", "type": "long", "values": [
-      0, 1073741824, 10737418240, 53687091200, 107374182400
-    ]},
-    { "name": "LocalEffectiveStorage", "type": "long", "values": [
-      1073741824, 5368709120, 53687091200, 107374182400, 536870912000
-    ]},
-    { "name": "LogicalBytes", "type": "long", "values": [
-      10737418240, 53687091200, 107374182400, 536870912000, 1099511627776,
-      5497558138880, 10995116277760
-    ]},
-    { "name": "PhysicalBytes", "type": "long", "values": [
-      1073741824, 5368709120, 10737418240, 53687091200, 107374182400,
-      536870912000, 1099511627776
-    ]},
-    { "name": "UsedBytes", "type": "long", "values": [
-      536870912, 5368709120, 10737418240, 53687091200, 107374182400,
-      536870912000
-    ]},
-    { "name": "ProvisionedBytes", "type": "long", "values": [
-      10737418240, 53687091200, 107374182400, 536870912000, 1099511627776
-    ]},
-    { "name": "TransferredBytes", "type": "long", "values": [
-      0, 1073741824, 10737418240, 53687091200, 107374182400 ]},
-    { "name": "LocalProtectedData", "type": "long", "values": [
-      0, 1073741824, 10737418240, 53687091200, 107374182400 ]},
-    { "name": "LocalMeteredData", "type": "long", "values": [
-      0, 1073741824, 5368709120, 10737418240, 53687091200 ]},
-    { "name": "LastSnapshotLogicalBytes", "type": "long", "values": [
-      0, 536870912, 1073741824, 5368709120, 10737418240, 53687091200 ]},
-    { "name": "DataReduction", "type": "real", "values": [
-      1.0, 1.2, 1.5, 1.8, 2.1, 2.5, 3.0, 3.5, 4.0, 4.5, 5.2, 6.1, 7.4
-    ]},
-    { "name": "LogicalDataReduction", "type": "real", "values": [
-      1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0
-    ]},
-    { "name": "SourceProtocol", "type": "string", "values": [
-      "VMware", "MSSQL", "Oracle", "NFS", "SMB", "AWS-EC2", "Azure",
-      "Kubernetes", "M365"
-    ]},
-    { "name": "NcdPolicyName", "type": "string", "values": [
-      "Gold-Tier1-Production", "Silver-Tier2-Production",
-      "Bronze-Tier3-Dev", "Mission-Critical-24h"
-    ]},
-    { "name": "NcdSnapshotType", "type": "string", "values": [
-      "Incremental", "Full", "Log" ]},
-    { "name": "NcdLatestArchiveSnapshot", "type": "datetime" },
-    { "name": "SourceSystem", "type": "string", "values": [
-      "RubrikSecurityCloud" ]}
+    {
+      "name": "TimeGenerated",
+      "type": "datetime"
+    },
+    {
+      "name": "AssetId",
+      "type": "string",
+      "values": [
+        "asset-vm-prd-sql-001",
+        "asset-vm-prd-sql-002",
+        "asset-vm-prd-ad-003",
+        "asset-vm-prd-app-010",
+        "asset-vm-prd-app-011",
+        "asset-vm-prd-web-020",
+        "asset-vm-dev-app-100",
+        "asset-vm-dev-app-101",
+        "asset-vm-test-200",
+        "asset-vmware-vc-300",
+        "asset-vmware-vc-301",
+        "asset-mssql-db-400",
+        "asset-mssql-db-401",
+        "asset-oracle-db-410",
+        "asset-nas-share-500",
+        "asset-nas-share-501",
+        "asset-fileset-501",
+        "asset-fileset-502",
+        "asset-m365-mbx-600",
+        "asset-m365-od-601",
+        "asset-m365-sp-602",
+        "asset-k8s-pvc-700",
+        "asset-k8s-pvc-701",
+        "asset-aws-ec2-800",
+        "asset-aws-rds-801",
+        "asset-azure-vm-900",
+        "asset-azure-disk-901"
+      ]
+    },
+    {
+      "name": "AssetName",
+      "type": "string",
+      "values": [
+        "prd-sql-cluster-01",
+        "prd-sql-cluster-02",
+        "prd-ad-dc-03",
+        "prd-app-server-10",
+        "prd-app-server-11",
+        "prd-web-server-20",
+        "dev-app-server-100",
+        "dev-app-server-101",
+        "test-server-200",
+        "vcenter-east-01",
+        "vcenter-east-02",
+        "FinanceDB",
+        "HRDB",
+        "OracleERP",
+        "//fileserver/finance-share",
+        "//fileserver/hr-share",
+        "fileset-legal-archive",
+        "fileset-engineering-source",
+        "ceo@contoso.com",
+        "alice@contoso.com/onedrive",
+        "sites/finance/sharepoint",
+        "pvc-prod-checkout-01",
+        "pvc-prod-checkout-02",
+        "i-0abc1234ec2instance",
+        "rds-finance-prod",
+        "vm-azure-finance-09",
+        "azuredisk-finance-09"
+      ]
+    },
+    {
+      "name": "ObjectType",
+      "type": "string",
+      "values": [
+        "VmwareVirtualMachine",
+        "WindowsVolumeGroup",
+        "MssqlDatabase",
+        "OracleDatabase",
+        "NasFileset",
+        "WindowsFileset",
+        "LinuxFileset",
+        "ManagedVolume",
+        "K8sPersistentVolumeClaim",
+        "Ec2Instance",
+        "RdsInstance",
+        "AzureVirtualMachine",
+        "AzureNativeManagedDisk",
+        "O365Mailbox",
+        "O365Onedrive",
+        "O365Sharepoint",
+        "O365Teams"
+      ]
+    },
+    {
+      "name": "ObjectState",
+      "type": "string",
+      "values": [
+        "Active",
+        "Active",
+        "Active",
+        "Active",
+        "Active",
+        "Active",
+        "Replicated",
+        "DoNotProtect",
+        "Relic"
+      ]
+    },
+    {
+      "name": "ProtectionStatus",
+      "type": "string",
+      "values": [
+        "Protected",
+        "Protected",
+        "Protected",
+        "Protected",
+        "Protected",
+        "Protected",
+        "Protected",
+        "Unprotected",
+        "Unprotected",
+        "DoNotProtect",
+        "AwaitingFirstFull"
+      ]
+    },
+    {
+      "name": "ComplianceStatus",
+      "type": "string",
+      "values": [
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "OutOfCompliance",
+        "OutOfCompliance",
+        "OutOfCompliance",
+        "NotAvailable"
+      ]
+    },
+    {
+      "name": "ArchivalComplianceStatus",
+      "type": "string",
+      "values": [
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "OutOfCompliance",
+        "OutOfCompliance",
+        "NotAvailable"
+      ]
+    },
+    {
+      "name": "ReplicationComplianceStatus",
+      "type": "string",
+      "values": [
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "InCompliance",
+        "OutOfCompliance",
+        "OutOfCompliance",
+        "OutOfCompliance",
+        "NotAvailable"
+      ]
+    },
+    {
+      "name": "LastSnapshot",
+      "type": "datetime"
+    },
+    {
+      "name": "LatestArchivalSnapshot",
+      "type": "datetime"
+    },
+    {
+      "name": "LatestReplicationSnapshot",
+      "type": "datetime"
+    },
+    {
+      "name": "ProtectedOn",
+      "type": "datetime"
+    },
+    {
+      "name": "PullTime",
+      "type": "datetime"
+    },
+    {
+      "name": "Location",
+      "type": "string",
+      "values": [
+        "us-east-1",
+        "us-west-2",
+        "westeurope",
+        "northeurope",
+        "eastus",
+        "westus2",
+        "DC1-Boston",
+        "DC2-Phoenix",
+        "DC3-London"
+      ]
+    },
+    {
+      "name": "ClusterName",
+      "type": "string",
+      "values": [
+        "rubrik-prd-east-01",
+        "rubrik-prd-east-01",
+        "rubrik-prd-east-01",
+        "rubrik-prd-west-01",
+        "rubrik-prd-west-01",
+        "rubrik-edge-boston-01",
+        "rubrik-edge-phoenix-01",
+        "rubrik-rsc-cloud-01"
+      ]
+    },
+    {
+      "name": "SlaDomainName",
+      "type": "string",
+      "values": [
+        "Gold-Tier1-Production",
+        "Silver-Tier2-Production",
+        "Bronze-Tier3-Dev",
+        "Mission-Critical-24h",
+        "Standard-Daily-30d",
+        "Standard-Daily-30d",
+        "Standard-Daily-30d",
+        "Archive-Long-Term-7yr",
+        "PCI-Compliance-7yr",
+        "HIPAA-Compliance-7yr",
+        "GDPR-Compliance-30d",
+        "DoNotProtect",
+        "UNPROTECTED"
+      ]
+    },
+    {
+      "name": "WorkloadOrgName",
+      "type": "string",
+      "values": [
+        "Contoso",
+        "Contoso-Finance",
+        "Contoso-HR",
+        "Contoso-Engineering",
+        "Contoso-Legal",
+        "Contoso-Sales"
+      ]
+    },
+    {
+      "name": "OrgName",
+      "type": "string",
+      "values": [
+        "Contoso",
+        "Contoso-Finance",
+        "Contoso-HR",
+        "Contoso-Engineering",
+        "Contoso-Legal",
+        "Contoso-Sales"
+      ]
+    },
+    {
+      "name": "Fid",
+      "type": "string",
+      "values": [
+        "fid-3f8a-9d12-7abc-0001",
+        "fid-3f8a-9d12-7abc-0002",
+        "fid-7c91-2ef4-44bd-0010",
+        "fid-9b22-4d77-1c0a-0050",
+        "fid-2104-aa55-66de-0100",
+        "fid-5512-bbcc-7733-0200"
+      ]
+    },
+    {
+      "name": "OrgId",
+      "type": "string",
+      "values": [
+        "Org:01HABCDEF1234567890",
+        "Org:01HABCDEF1234567891",
+        "Org:01HABCDEF1234567892"
+      ]
+    },
+    {
+      "name": "AwaitingFirstFull",
+      "type": "boolean",
+      "values": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "ArchivalSnapshotLag",
+      "type": "int",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        5,
+        7,
+        14,
+        30,
+        60
+      ]
+    },
+    {
+      "name": "ReplicationSnapshotLag",
+      "type": "int",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        5,
+        7,
+        14,
+        30
+      ]
+    },
+    {
+      "name": "MissedSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        5,
+        8,
+        12,
+        20
+      ]
+    },
+    {
+      "name": "TotalSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        14,
+        30,
+        45,
+        60,
+        90,
+        120,
+        180,
+        240,
+        365,
+        500,
+        730
+      ]
+    },
+    {
+      "name": "LocalSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        7,
+        14,
+        30,
+        45,
+        60,
+        90,
+        120,
+        180
+      ]
+    },
+    {
+      "name": "LocalSlaSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        7,
+        14,
+        30,
+        45,
+        60,
+        90,
+        120,
+        180
+      ]
+    },
+    {
+      "name": "LocalOnDemandSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "name": "ArchiveSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        7,
+        14,
+        30,
+        60,
+        90,
+        365
+      ]
+    },
+    {
+      "name": "ReplicaSnapshots",
+      "type": "int",
+      "values": [
+        0,
+        0,
+        7,
+        14,
+        30,
+        60,
+        90
+      ]
+    },
+    {
+      "name": "LocalStorage",
+      "type": "long",
+      "values": [
+        1073741824,
+        5368709120,
+        10737418240,
+        53687091200,
+        107374182400,
+        536870912000,
+        1099511627776,
+        5497558138880
+      ]
+    },
+    {
+      "name": "ArchiveStorage",
+      "type": "long",
+      "values": [
+        0,
+        536870912,
+        5368709120,
+        53687091200,
+        107374182400,
+        536870912000
+      ]
+    },
+    {
+      "name": "ReplicaStorage",
+      "type": "long",
+      "values": [
+        0,
+        1073741824,
+        10737418240,
+        53687091200,
+        107374182400
+      ]
+    },
+    {
+      "name": "LocalEffectiveStorage",
+      "type": "long",
+      "values": [
+        1073741824,
+        5368709120,
+        53687091200,
+        107374182400,
+        536870912000
+      ]
+    },
+    {
+      "name": "LogicalBytes",
+      "type": "long",
+      "values": [
+        10737418240,
+        53687091200,
+        107374182400,
+        536870912000,
+        1099511627776,
+        5497558138880,
+        10995116277760
+      ]
+    },
+    {
+      "name": "PhysicalBytes",
+      "type": "long",
+      "values": [
+        1073741824,
+        5368709120,
+        10737418240,
+        53687091200,
+        107374182400,
+        536870912000,
+        1099511627776
+      ]
+    },
+    {
+      "name": "UsedBytes",
+      "type": "long",
+      "values": [
+        536870912,
+        5368709120,
+        10737418240,
+        53687091200,
+        107374182400,
+        536870912000
+      ]
+    },
+    {
+      "name": "ProvisionedBytes",
+      "type": "long",
+      "values": [
+        10737418240,
+        53687091200,
+        107374182400,
+        536870912000,
+        1099511627776
+      ]
+    },
+    {
+      "name": "TransferredBytes",
+      "type": "long",
+      "values": [
+        0,
+        1073741824,
+        10737418240,
+        53687091200,
+        107374182400
+      ]
+    },
+    {
+      "name": "LocalProtectedData",
+      "type": "long",
+      "values": [
+        0,
+        1073741824,
+        10737418240,
+        53687091200,
+        107374182400
+      ]
+    },
+    {
+      "name": "LocalMeteredData",
+      "type": "long",
+      "values": [
+        0,
+        1073741824,
+        5368709120,
+        10737418240,
+        53687091200
+      ]
+    },
+    {
+      "name": "LastSnapshotLogicalBytes",
+      "type": "long",
+      "values": [
+        0,
+        536870912,
+        1073741824,
+        5368709120,
+        10737418240,
+        53687091200
+      ]
+    },
+    {
+      "name": "DataReduction",
+      "type": "real",
+      "values": [
+        1.0,
+        1.2,
+        1.5,
+        1.8,
+        2.1,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.2,
+        6.1,
+        7.4
+      ]
+    },
+    {
+      "name": "LogicalDataReduction",
+      "type": "real",
+      "values": [
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        6.0,
+        7.0,
+        8.0
+      ]
+    },
+    {
+      "name": "SourceProtocol",
+      "type": "string",
+      "values": [
+        "VMware",
+        "MSSQL",
+        "Oracle",
+        "NFS",
+        "SMB",
+        "AWS-EC2",
+        "Azure",
+        "Kubernetes",
+        "M365"
+      ]
+    },
+    {
+      "name": "NcdPolicyName",
+      "type": "string",
+      "values": [
+        "Gold-Tier1-Production",
+        "Silver-Tier2-Production",
+        "Bronze-Tier3-Dev",
+        "Mission-Critical-24h"
+      ]
+    },
+    {
+      "name": "NcdSnapshotType",
+      "type": "string",
+      "values": [
+        "Incremental",
+        "Full",
+        "Log"
+      ]
+    },
+    {
+      "name": "NcdLatestArchiveSnapshot",
+      "type": "datetime"
+    },
+    {
+      "name": "SourceSystem",
+      "type": "string",
+      "values": [
+        "RubrikSecurityCloud"
+      ]
+    }
   ]
 }
